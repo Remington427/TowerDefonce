@@ -9,7 +9,7 @@ public class gestionVagues : MonoBehaviour
     [SerializeField] private Transform portail;
     [SerializeField] private TextMeshProUGUI uiVague;
     private float demarrage = 5f;
-    private float intervalle = 10f;
+    private float intervalle = 12f;
     private float intervalleEnnemis = 1f;
     private bool depart = true;
     private int indVague = 0;

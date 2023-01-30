@@ -13,7 +13,7 @@ public class ennemi : MonoBehaviour
     void Start()
     {
         destination = pointsDePassage.points[0];
-        destination.Set(destination.x, transform.position.y, destination.z);
+        destination.Set(destination.x, transform.localScale.y/2+0.1f, destination.z);
     }
 
     // Update is called once per frame
