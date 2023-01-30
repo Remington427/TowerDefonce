@@ -1,10 +1,13 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class gestionVagues : MonoBehaviour
 {
     [SerializeField] private Transform ennemiBasique;
     [SerializeField] private Transform portail;
+    [SerializeField] private TextMeshProUGUI uiVague;
     private float demarrage = 5f;
     private float intervalle = 10f;
     private float intervalleEnnemis = 1f;
@@ -24,6 +27,7 @@ public class gestionVagues : MonoBehaviour
         if(depart)
         {
             demarrage -= Time.deltaTime;
+            uiVague.text = "Temps avant prochaine vague : " + Mathf.Round(demarrage).ToString();
         }
     }
 
