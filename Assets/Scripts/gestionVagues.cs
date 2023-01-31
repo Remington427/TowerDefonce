@@ -5,14 +5,16 @@ using TMPro;
 
 public class gestionVagues : MonoBehaviour
 {
-    [SerializeField] private Transform ennemiBasique;
-    [SerializeField] private Transform portail;
-    [SerializeField] private TextMeshProUGUI uiVague;
+    public Transform ennemiBasique;
+    public Transform portail;
+    public TextMeshProUGUI uiDecompteVague;
+    public TextMeshProUGUI uiAffichIndVague;
     private float demarrage = 5f;
-    private float intervalle = 12f;
+    private float intervalle = 20f;
     private float intervalleEnnemis = 1f;
     private bool depart = true;
     private int indVague = 0;
+    private int nbEnnemis = 1;
 
     // Update is called once per frame
     void Update()
@@ -20,20 +22,22 @@ public class gestionVagues : MonoBehaviour
         if(demarrage <= 0f)
         {
             indVague++;
+            nbEnnemis = (int)Mathf.Round(Mathf.Pow(indVague+5,1.25f));
+            uiAffichIndVague.text = "Vague " + indVague;
             StartCoroutine(ApparitionVague());
-            demarrage = intervalle + indVague;
+            demarrage = intervalle + nbEnnemis;
         }
 
         if(depart)
         {
             demarrage -= Time.deltaTime;
-            uiVague.text = "Temps avant prochaine vague : " + Mathf.Round(demarrage).ToString();
+            uiDecompteVague.text = "Temps avant prochaine vague : " + Mathf.Round(demarrage).ToString();
         }
     }
 
     IEnumerator ApparitionVague()
     {
-        for(int i = 0; i < indVague; i++)
+        for(int i = 0; i < nbEnnemis; i++)
         {
             Spawn();
             yield return new WaitForSeconds(intervalleEnnemis);
