@@ -10,7 +10,6 @@ public class gestionVagues : MonoBehaviour
     public TextMeshProUGUI uiDecompteVague;
     public TextMeshProUGUI uiAffichIndVague;
     private float demarrage = 5f;
-    private float intervalle = 20f;
     private float intervalleEnnemis = 1f;
     private bool depart = true;
     private int indVague = 0;
@@ -25,7 +24,7 @@ public class gestionVagues : MonoBehaviour
             nbEnnemis = (int)Mathf.Round(Mathf.Pow(indVague+5,1.25f));
             uiAffichIndVague.text = "Vague " + indVague;
             StartCoroutine(ApparitionVague());
-            demarrage = intervalle + nbEnnemis;
+            demarrage = pointsDePassage.points.Length + nbEnnemis;
         }
 
         if(depart)

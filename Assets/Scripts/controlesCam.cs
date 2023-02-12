@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class controlesCam : MonoBehaviour
 {
+    public float vitesseMouvement = 10f;
+    public float vitesseZoom = 15f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,12 +16,28 @@ public class controlesCam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         //mouvements
-        transform.Translate(Vector3.forward * Time.deltaTime * Input.GetAxis("Vertical"));
-        transform.Translate(Vector3.right * Time.deltaTime * Input.GetAxis("Horizontal"));
+        if(Input.GetKey(KeyCode.Z) || Input.mousePosition.y >= Screen.height - 10f)
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * vitesseMouvement, Space.World);
+        }
+        else if(Input.GetKey(KeyCode.S) || Input.mousePosition.y <= 10f)
+        {
+            transform.Translate(Vector3.back * Time.deltaTime * vitesseMouvement, Space.World);
+        }
+        if(Input.GetKey(KeyCode.D) || Input.mousePosition.x >= Screen.width - 10f)
+        {
+            transform.Translate(Vector3.right * Time.deltaTime * vitesseMouvement, Space.World);
+        }
+        else if(Input.GetKey(KeyCode.Q) || Input.mousePosition.x <= 10f)
+        {
+            transform.Translate(Vector3.left * Time.deltaTime * vitesseMouvement, Space.World);
+        }
 
-        //orientation
-        //transform.Rotate (-3 * Input.GetAxis ("Mouse Y"), 3 * Input.GetAxis ("Mouse X"), 0, Space.Self);
+        //zoom
+        ///float scroll = Input.GetAxis("Mouse ScrollWheel");
+        //Debug.Log(scroll);
+        //transform.position.Set(transform.position.x, Mathf.Clamp(transform.position.y - scroll * 1000 * vitesseZoom * Time.deltaTime, 5f, 40f), transform.position.z);
+
     }
 }

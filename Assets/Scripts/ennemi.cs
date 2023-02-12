@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ennemi : MonoBehaviour
+public class Ennemi : MonoBehaviour
 {
     private float vitesse = 3f;
     private Vector3 destination;

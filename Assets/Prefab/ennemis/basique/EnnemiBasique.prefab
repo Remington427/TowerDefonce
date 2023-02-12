@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 6949548381138496159}
   m_Layer: 0
   m_Name: EnnemiBasique
-  m_TagString: Untagged
+  m_TagString: Ennemi
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -208,3 +208,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16929b59daa173e44aec8f41db79aaf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particuleImpact: {fileID: 5436517231079818793, guid: c31e70e7a570fb643b393c7d0628e753, type: 3}
