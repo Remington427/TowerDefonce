@@ -6,10 +6,11 @@ using TMPro;
 public class gestionVagues : MonoBehaviour
 {
     public Transform ennemiBasique;
+    public Transform ennemiCostaud;
     public Transform portail;
     public TextMeshProUGUI uiDecompteVague;
     public TextMeshProUGUI uiAffichIndVague;
-    private float demarrage = 5f;
+    private float demarrage = 15f;
     private float intervalleEnnemis = 1f;
     private bool depart = true;
     private int indVague = 0;
@@ -38,14 +39,26 @@ public class gestionVagues : MonoBehaviour
     {
         for(int i = 0; i < nbEnnemis; i++)
         {
-            Spawn();
+            if(indVague >2 && i<nbEnnemis/3){
+                SpawnCostaud();
+            }
+            else
+            {
+                SpawnBasique();
+            }
+            
             yield return new WaitForSeconds(intervalleEnnemis);
         }
 
     }
 
-    void Spawn()
+    void SpawnBasique()
     {
         Instantiate(ennemiBasique, portail.position, portail.rotation);
+    }
+
+    void SpawnCostaud()
+    {
+        Instantiate(ennemiCostaud, portail.position, portail.rotation);
     }
 }

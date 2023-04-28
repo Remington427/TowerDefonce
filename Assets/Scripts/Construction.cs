@@ -4,8 +4,8 @@ public class Construction : MonoBehaviour
 {
     public static Construction singleton;
 
-    public GameObject tourelleParDefaut;
     private GameObject tourelleAConstruire;
+
 
     private void Awake()
     {
@@ -15,11 +15,16 @@ public class Construction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        tourelleAConstruire = tourelleParDefaut;
+        //tourelleAConstruire = tourelleParDefaut;
     }
     
     public GameObject getTourelleAConstruire()
     {
         return tourelleAConstruire;
+    }
+
+    public void setTourelleAConstruire(GameObject tourelle)
+    {
+        tourelleAConstruire = tourelle;
     }
 }

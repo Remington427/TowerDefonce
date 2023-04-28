@@ -4,50 +4,52 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private Transform cible;
+    private Vector3 direction;
 
-    public GameObject particuleImpact;
+    private float vitesse = 10f;
 
-    public float vitesse = 50f;
+    private float degats = 2f;
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        InvokeRepeating("FinDeVie", 5f, 5f);
     }
 
-    public void recherche(Transform _cible)
+    public void recherche(Vector3 _direction)
     {
-        cible = _cible;
+        direction = _direction;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(cible == null)
-        {
-            Destroy(gameObject);
-            return;
-        }
 
-        Vector3 direction = cible.position - transform.position;
+        //direction = (direction - transform.position).normalized;
         float distance = vitesse * Time.deltaTime;
-        
-        if(direction.magnitude <= distance)
-        {
-            CibleTouchee();
-            return;
-        }
-
-        transform.Translate(direction.normalized * distance, Space.World);
+        Collisions(direction, distance);       
+        transform.Translate(direction * distance, Space.World);
 
         
     }
 
-    void CibleTouchee()
+    void Collisions(Vector3 direction, float distance)
     {
-        GameObject particules = Instantiate(particuleImpact, transform.position, transform.rotation);
-        Destroy(particules, 2f);
+        RaycastHit[] hits = Physics.SphereCastAll(transform.position, 0.1f, direction, distance);
+        foreach(RaycastHit hit in hits)
+        {
+            GameObject objetTouche = hit.collider.gameObject;
+            if(objetTouche.GetComponent<Ennemi>() != null)
+            {
+                Ennemi ennemi = objetTouche.GetComponent<Ennemi>();
+                ennemi.Touche(degats);
+                FinDeVie();
+                break;
+            }
+        }
+    }
+
+    void FinDeVie()
+    {
         Destroy(gameObject);
     }
 }

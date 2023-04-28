@@ -5,8 +5,12 @@ using UnityEngine;
 public class Ennemi : MonoBehaviour
 {
     private float vitesse = 3f;
-    private Vector3 destination;
+    private float pointsDeVie = 15f;
+    public Vector3 destination;
     private int indicePointsDePassage;
+
+    
+    public GameObject particuleImpact;
     
     // Start is called before the first frame update
     void Start()
@@ -32,5 +36,22 @@ public class Ennemi : MonoBehaviour
                 destination.Set(destination.x, transform.position.y, destination.z);
             }
         }
+    }
+
+    public void Touche(float degats)
+    {
+        GameObject particules = Instantiate(particuleImpact, transform.position, transform.rotation);
+        Destroy(particules, 2f);
+        pointsDeVie -= degats;
+        if(pointsDeVie <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public Vector3 GetVelocite()
+    {
+        Vector3 direction = destination - transform.position;
+        return direction.normalized * vitesse;
     }
 }
