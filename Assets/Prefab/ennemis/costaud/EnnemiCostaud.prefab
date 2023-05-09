@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7575431293822843583}
   - component: {fileID: 6544953064427665579}
   - component: {fileID: 5703650355034444126}
-  - component: {fileID: 3329997337807971938}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -84,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3329997337807971938
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 222971939029535178}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3877781196379024988
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,9 +95,9 @@ GameObject:
   - component: {fileID: 5086665235196825364}
   - component: {fileID: 6118562870085684520}
   - component: {fileID: 4181870430915482042}
-  - component: {fileID: 7227995532894793036}
+  - component: {fileID: 2718820628687537022}
   m_Layer: 0
-  m_Name: Costaud
+  m_Name: EnnemiCostaud
   m_TagString: Ennemi
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -196,7 +182,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7227995532894793036
+--- !u!114 &2718820628687537022
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -208,5 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16929b59daa173e44aec8f41db79aaf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vitesse: 2
+  pointsDeVie: 50
   destination: {x: 0, y: 0, z: 0}
   particuleImpact: {fileID: 5436517231079818793, guid: b945e5381a7a7df439b6d5fe427a6c7a, type: 3}

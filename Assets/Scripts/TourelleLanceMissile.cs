@@ -2,24 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TourelleLanceMissile : MonoBehaviour
+public class TourelleLanceMissile : Tourelle
 {
-
-    public GameObject cible;
-
-    public float portee = 10f;
-
-    public string ennemiTag = "Ennemi";
-
-    public Transform partiePivotante;
-    public float vitesseDeRotation = 2f;
-
-    public float cadenceDeTir = 2f;
-    private float separTir = 3f;
-
-    public GameObject projectile;
-    public Transform spawnProjectile;
-
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +23,7 @@ public class TourelleLanceMissile : MonoBehaviour
         Rotation(direction);
         // Verif si la tourelle est bien orientee vers la cible
         float angle = Vector3.Angle(direction, partiePivotante.forward);
-        if(separTir <= 0 && angle < 30f)
+        if(separTir <= 0f && angle < 35f)
         {
           Tir();
           separTir = 1/cadenceDeTir;
@@ -47,7 +31,7 @@ public class TourelleLanceMissile : MonoBehaviour
         separTir -= Time.deltaTime;
     }
 
-    void UpdateCible()
+    protected override void UpdateCible()
     {
         GameObject[] ennemis = GameObject.FindGameObjectsWithTag(ennemiTag);
         float distanceMin = Mathf.Infinity;
@@ -73,7 +57,7 @@ public class TourelleLanceMissile : MonoBehaviour
         }
     }
 
-    void Rotation(Vector3 direction)
+    protected override void Rotation(Vector3 direction)
     {
         //direction vers laquelle regarder
         Quaternion regard = Quaternion.LookRotation(direction);
@@ -81,7 +65,7 @@ public class TourelleLanceMissile : MonoBehaviour
         partiePivotante.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 
-    void Tir()
+    protected override void Tir()
     {
         GameObject missileObj = Instantiate(projectile, spawnProjectile.position, spawnProjectile.rotation);
         ProjectileGuide missile = missileObj.GetComponent<ProjectileGuide>();

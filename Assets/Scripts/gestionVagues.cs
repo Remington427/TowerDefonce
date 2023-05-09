@@ -7,13 +7,14 @@ public class gestionVagues : MonoBehaviour
 {
     public Transform ennemiBasique;
     public Transform ennemiCostaud;
+    public Transform ennemiVolant;
     public Transform portail;
     public TextMeshProUGUI uiDecompteVague;
     public TextMeshProUGUI uiAffichIndVague;
     private float demarrage = 15f;
     private float intervalleEnnemis = 1f;
     private bool depart = true;
-    private int indVague = 0;
+    public int indVague = 0;
     private int nbEnnemis = 1;
 
     // Update is called once per frame
@@ -39,12 +40,16 @@ public class gestionVagues : MonoBehaviour
     {
         for(int i = 0; i < nbEnnemis; i++)
         {
-            if(indVague >2 && i<nbEnnemis/3){
+            if(i<nbEnnemis/3){
                 SpawnCostaud();
+            }
+            else if (i< 2 * (nbEnnemis/3))
+            {
+                SpawnBasique();
             }
             else
             {
-                SpawnBasique();
+                SpawnVolant();
             }
             
             yield return new WaitForSeconds(intervalleEnnemis);
@@ -60,5 +65,10 @@ public class gestionVagues : MonoBehaviour
     void SpawnCostaud()
     {
         Instantiate(ennemiCostaud, portail.position, portail.rotation);
+    }
+
+    void SpawnVolant()
+    {
+        Instantiate(ennemiVolant, portail.position, portail.rotation);
     }
 }

@@ -2,24 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TourelleBasique : MonoBehaviour
+public class TourelleBasique : Tourelle
 {
-
-    public GameObject cible;
-
-    public float portee = 5f;
-
-    public string ennemiTag = "Ennemi";
-
-    public Transform partiePivotante;
-    public float vitesseDeRotation = 3f;
-
-    public float cadenceDeTir = 5f;
-    private float separTir = 3f;
-
-    public GameObject projectile;
-    public Transform spawnProjectile;
-
 
     // Start is called before the first frame update
     void Start()
@@ -47,7 +31,7 @@ public class TourelleBasique : MonoBehaviour
         separTir -= Time.deltaTime;
     }
 
-    void UpdateCible()
+    protected override void UpdateCible()
     {
         GameObject[] ennemis = GameObject.FindGameObjectsWithTag(ennemiTag);
         float distanceMin = Mathf.Infinity;
@@ -73,7 +57,7 @@ public class TourelleBasique : MonoBehaviour
         }
     }
 
-    void Rotation(Vector3 direction)
+    protected override void Rotation(Vector3 direction)
     {
         //direction vers laquelle regarder
         Quaternion regard = Quaternion.LookRotation(direction);
@@ -81,7 +65,7 @@ public class TourelleBasique : MonoBehaviour
         partiePivotante.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 
-    void Tir()
+    protected override void Tir()
     {
         GameObject balleObj = Instantiate(projectile, spawnProjectile.position, spawnProjectile.rotation);
         Projectile balle = balleObj.GetComponent<Projectile>();
@@ -96,7 +80,7 @@ public class TourelleBasique : MonoBehaviour
         //positionCible - positionDepart
         //return (cible.transform.position - depart).normalized;
         //variante
-        Ennemi ennemi = cible.GetComponent<Ennemi>();
+        EnnemiTerrestre ennemi = cible.GetComponent<EnnemiTerrestre>();
         return (predictedPosition(cible.transform.position, spawnProjectile.position, ennemi.GetVelocite(), 10f) - depart).normalized;
 
     }

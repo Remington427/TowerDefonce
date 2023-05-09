@@ -6381,6 +6381,7 @@ GameObject:
   - component: {fileID: 1608693403}
   - component: {fileID: 1608693402}
   - component: {fileID: 1608693404}
+  - component: {fileID: 1608693405}
   m_Layer: 0
   m_Name: Gestionnaire
   m_TagString: Untagged
@@ -6402,9 +6403,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ennemiBasique: {fileID: 128679077173277660, guid: 5ea79398a098e0448aa095f3c3eeca16, type: 3}
   ennemiCostaud: {fileID: 9091991278481883009, guid: a2e48281db6179b48b8270d1257a0b58, type: 3}
+  ennemiVolant: {fileID: 6342381598647960057, guid: 5db00fb09fc36ae4ab22ab7562b43a6b, type: 3}
   portail: {fileID: 503129221}
   uiDecompteVague: {fileID: 1560885890}
   uiAffichIndVague: {fileID: 1806016933}
+  indVague: 0
 --- !u!4 &1608693403
 Transform:
   m_ObjectHideFlags: 0
@@ -6430,6 +6433,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7114a2c472f14b44a5a2ad7d1d880bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1608693405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608693401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c38039b229e97648a81e4bb97e5a506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1637586295 stripped

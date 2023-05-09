@@ -6,9 +6,9 @@ public class Projectile : MonoBehaviour
 {
     private Vector3 direction;
 
-    private float vitesse = 10f;
+    public float vitesse;
 
-    private float degats = 2f;
+    public float degats;
 
     void Start()
     {
@@ -38,9 +38,9 @@ public class Projectile : MonoBehaviour
         foreach(RaycastHit hit in hits)
         {
             GameObject objetTouche = hit.collider.gameObject;
-            if(objetTouche.GetComponent<Ennemi>() != null)
+            if(objetTouche.GetComponent<EnnemiTerrestre>() != null)
             {
-                Ennemi ennemi = objetTouche.GetComponent<Ennemi>();
+                EnnemiTerrestre ennemi = objetTouche.GetComponent<EnnemiTerrestre>();
                 ennemi.Touche(degats);
                 FinDeVie();
                 break;

@@ -178,9 +178,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cible: {fileID: 0}
   portee: 10
-  ennemiTag: Ennemi
+  ennemiTag: EnnemiVolant
   partiePivotante: {fileID: 599426151612690914}
-  vitesseDeRotation: 2
+  vitesseDeRotation: 3
   cadenceDeTir: 1
   projectile: {fileID: 2402430276477657451, guid: c97dbf0ecaf37fc468c95213b17e24d2, type: 3}
   spawnProjectile: {fileID: 8636752273519228548}

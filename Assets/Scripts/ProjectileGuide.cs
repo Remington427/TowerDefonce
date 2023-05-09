@@ -2,15 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileGuide : MonoBehaviour
+public class ProjectileGuide : Projectile
 {
     private GameObject cible;
 
     public GameObject particuleExplosion;
-
-    public float vitesse = 7f;
-
-    public float degats = 10f;
 
     public float rayonExplosion = 5f;
 
@@ -24,7 +20,7 @@ public class ProjectileGuide : MonoBehaviour
     {
         if(cible == null)
         {
-            Destroy(gameObject);
+            Explosion();
             return;
         }
         Vector3 direction = cible.transform.position - transform.position;
@@ -46,9 +42,14 @@ public class ProjectileGuide : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(transform.position, rayonExplosion);
         foreach (Collider collider in colliders)
         {
-            if(collider.tag == "Ennemi")
+            if(collider.gameObject.tag == "EnnemiVolant")
             {
-                Ennemi ennemi = collider.GetComponent<Ennemi>();
+                EnnemiVolant ennemi = collider.gameObject.GetComponent<EnnemiVolant>();
+                ennemi.Touche(degats);
+            }
+            else if(collider.gameObject.tag == "Terrestre")
+            {
+                EnnemiTerrestre ennemi = collider.gameObject.GetComponent<EnnemiTerrestre>();
                 ennemi.Touche(degats);
             }
 

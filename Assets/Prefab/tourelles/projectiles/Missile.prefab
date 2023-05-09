@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe6859d7fe5741d48bf2130c66e0e40e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particuleExplosion: {fileID: 4104586106920754048, guid: bdd2e4ea05948a54e94497cd91550a99, type: 3}
   vitesse: 7
   degats: 10
+  particuleExplosion: {fileID: 4104586106920754048, guid: bdd2e4ea05948a54e94497cd91550a99, type: 3}
   rayonExplosion: 5
 --- !u!1 &2633795803392709452
 GameObject:
