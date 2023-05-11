@@ -19,12 +19,18 @@ public class Magasin : MonoBehaviour
     public void AchatTourelleBasique()
     {
         //construction;
-        construction.setTourelleAConstruire(tourelleBasique);
+        if(DonneesJoueur.Instance.Achat(20))
+        {
+            construction.setTourelleAConstruire(tourelleBasique);
+        }
     }
 
     public void AchatLanceMissile()
     {
         //construction;
-        construction.setTourelleAConstruire(tourelleLanceMissile);
+        if(DonneesJoueur.Instance.Achat(50))
+        {
+            construction.setTourelleAConstruire(tourelleLanceMissile);
+        }
     }
 }
