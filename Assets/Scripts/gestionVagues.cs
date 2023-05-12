@@ -5,17 +5,26 @@ using TMPro;
 
 public class gestionVagues : MonoBehaviour
 {
+    //classe singleton
+    public static gestionVagues Instance;
+
     public Transform ennemiBasique;
     public Transform ennemiCostaud;
     public Transform ennemiVolant;
     public Transform portail;
     public TextMeshProUGUI uiDecompteVague;
     public TextMeshProUGUI uiAffichIndVague;
-    private float demarrage = 15f;
+    private float demarrage = 25f;
     private float intervalleEnnemis = 1f;
     private bool depart = true;
-    public int indVague = 0;
+    private int indVague = 0;
     private int nbEnnemis = 1;
+
+    // Start is called before the first frame update
+    void Awake()
+    {
+        Instance = this;
+    }
 
     // Update is called once per frame
     void Update()
@@ -26,7 +35,7 @@ public class gestionVagues : MonoBehaviour
             nbEnnemis = (int)Mathf.Round(Mathf.Pow(indVague+5,1.25f));
             uiAffichIndVague.text = "Vague " + indVague;
             StartCoroutine(ApparitionVague());
-            demarrage = pointsDePassage.points.Length + nbEnnemis;
+            demarrage = (pointsDePassage.points.Length + nbEnnemis);
         }
 
         if(depart)
@@ -36,20 +45,33 @@ public class gestionVagues : MonoBehaviour
         }
     }
 
+    public int GetIndVague()
+    {
+        return indVague;
+    }
+
     IEnumerator ApparitionVague()
     {
         for(int i = 0; i < nbEnnemis; i++)
         {
-            if(i<nbEnnemis/3){
-                SpawnCostaud();
-            }
-            else if (i< 2 * (nbEnnemis/3))
+            if (indVague < 3)
             {
                 SpawnBasique();
             }
-            else
+            else if(indVague%5 == 0)
             {
                 SpawnVolant();
+            }
+            else
+            {
+                if(i<nbEnnemis/3)
+                {
+                    SpawnCostaud();
+                }
+                else
+                {
+                    SpawnBasique();
+                }
             }
             
             yield return new WaitForSeconds(intervalleEnnemis);

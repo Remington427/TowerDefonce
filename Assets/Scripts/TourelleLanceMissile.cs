@@ -22,8 +22,8 @@ public class TourelleLanceMissile : Tourelle
         Vector3 direction = cible.transform.position - transform.position;
         Rotation(direction);
         // Verif si la tourelle est bien orientee vers la cible
-        float angle = Vector3.Angle(direction, partiePivotante.forward);
-        if(separTir <= 0f && angle < 35f)
+        //float angle = Vector3.Angle(direction, partiePivotante.forward);
+        if(separTir <= 0f)
         {
           Tir();
           separTir = 1/cadenceDeTir;

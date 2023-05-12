@@ -8,6 +8,8 @@ public abstract class Tourelle : MonoBehaviour
 
     public float portee;
 
+    public int prix;
+
     public string ennemiTag;
 
     public Transform partiePivotante;

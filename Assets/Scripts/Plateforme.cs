@@ -26,7 +26,10 @@ public class Plateforme : MonoBehaviour
         else
         {
             GameObject tourelleAConstruire = construction.getTourelleAConstruire();
-            tourelle = Instantiate(tourelleAConstruire, transform.position, transform.rotation);
+            if(DonneesJoueur.Instance.Achat(tourelleAConstruire.GetComponent<Tourelle>().prix))
+            {
+                tourelle = Instantiate(tourelleAConstruire, transform.position, transform.rotation);
+            }
         }
     }
 

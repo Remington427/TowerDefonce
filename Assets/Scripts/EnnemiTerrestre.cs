@@ -9,6 +9,9 @@ public class EnnemiTerrestre : Ennemi
     // Start is called before the first frame update
     void Start()
     {
+        //les PdV augmente avec la vague
+        pointsDeVie += Mathf.Pow(gestionVagues.Instance.GetIndVague(),1.1f);
+
         destination = pointsDePassage.points[0];
         destination.Set(destination.x, transform.localScale.y/2+0.1f, destination.z);
     }
@@ -21,7 +24,7 @@ public class EnnemiTerrestre : Ennemi
         if(Vector3.Distance(transform.position, destination) <= 0.03f * vitesse)
         {
             if(indicePointsDePassage >= pointsDePassage.points.Length - 1){
-                Destroy(gameObject);
+                ObjectifAtteint();
             }
             else{
                 indicePointsDePassage++;

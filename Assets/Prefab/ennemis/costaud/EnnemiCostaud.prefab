@@ -194,7 +194,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16929b59daa173e44aec8f41db79aaf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  degats: 2
   vitesse: 2
   pointsDeVie: 50
+  recompense: 5
   destination: {x: 0, y: 0, z: 0}
   particuleImpact: {fileID: 5436517231079818793, guid: b945e5381a7a7df439b6d5fe427a6c7a, type: 3}

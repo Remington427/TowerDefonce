@@ -10,6 +10,9 @@ public class EnnemiVolant : Ennemi
     // Start is called before the first frame update
     void Start()
     {
+        //les PdV augmente avec la vague
+        pointsDeVie += Mathf.Pow(gestionVagues.Instance.GetIndVague(),1.05f);
+
         decolle = false;
         arrive = false;
         destination = transform.position;
@@ -35,7 +38,7 @@ public class EnnemiVolant : Ennemi
                 return;
             }
             else{
-                Destroy(gameObject);
+                ObjectifAtteint();
             }
         }
         else

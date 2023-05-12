@@ -1,13 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class DonneesJoueur : MonoBehaviour
 {
+    //classe singleton
     public static DonneesJoueur Instance;
 
-    private int pointsDeVie;
-    private int argent;
+    public gestionVagues gestionnaire;
+
+    public TextMeshProUGUI uiPointDeVie;
+    public TextMeshProUGUI uiArgent;
+    public TextMeshProUGUI uiDescription;
+
+    public int pointsDeVie;
+    public int argent;
 
     // Start is called before the first frame update
     void Awake()
@@ -18,7 +26,8 @@ public class DonneesJoueur : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        uiPointDeVie.text = "Vie : " + pointsDeVie.ToString();
+        uiArgent.text = "Argent : " + argent.ToString();
     }
 
     public int GetPointDeVie()
@@ -39,6 +48,19 @@ public class DonneesJoueur : MonoBehaviour
     public void Gain(int montant)
     {
         argent += montant;
+
+    }
+
+    public void MiseAJourDescription(int tourelle)
+    {
+        if(tourelle == 1)
+        {
+            uiDescription.text = "Tourelle choisie : basique (cible les ennemis terrestres)";
+        }
+        if(tourelle == 2)
+        {
+            uiDescription.text = "Tourelle choisie : lance-missile (cible les ennemis volants, missiles et explosions)";
+        }
 
     }
 
