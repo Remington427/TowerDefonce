@@ -17,9 +17,12 @@ public class DonneesJoueur : MonoBehaviour
     public int pointsDeVie;
     public int argent;
 
+    public bool fin;
+
     // Start is called before the first frame update
     void Awake()
     {
+        fin = false;
         Instance = this;
     }
 
@@ -38,6 +41,11 @@ public class DonneesJoueur : MonoBehaviour
     public void InfligeDegat(int degats)
     {
         pointsDeVie -= degats;
+        if(pointsDeVie <= 0)
+        {
+            pointsDeVie = 0;
+            fin = true;
+        }
     }
 
     public int GetArgent()
@@ -47,19 +55,28 @@ public class DonneesJoueur : MonoBehaviour
 
     public void Gain(int montant)
     {
-        argent += montant;
+        if(montant > 0) argent += montant;
 
     }
 
-    public void MiseAJourDescription(int tourelle)
+    public void MiseAJourDescription(int bouton)
     {
-        if(tourelle == 1)
+        if(bouton == 0)
         {
-            uiDescription.text = "Tourelle choisie : basique (cible les ennemis terrestres)";
+            uiDescription.text = "Passage a la vague suivante";
         }
-        if(tourelle == 2)
+        if(bouton == 1)
         {
-            uiDescription.text = "Tourelle choisie : lance-missile (cible les ennemis volants, missiles et explosions)";
+            uiDescription.text = "Tourelle choisie : basique (cible les ennemis terrestres), prix : 20";
+        }
+        if(bouton == 2)
+        {
+            uiDescription.text = "Tourelle choisie : lance-missile (cible les ennemis volants, missiles et explosif), prix : 50";
+        }
+
+        if(bouton == 3)
+        {
+            uiDescription.text = "Tourelle choisie : mortier (cible les ennemis terrestres, explosif), prix : 30";
         }
 
     }

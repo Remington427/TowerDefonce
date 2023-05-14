@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TourelleLanceMissile : TourellePivotante
+public class TourelleMortier : Tourelle
 {
-
     // Start is called before the first frame update
     void Start()
     {
@@ -19,10 +18,6 @@ public class TourelleLanceMissile : TourellePivotante
             return;
         }
         
-        Vector3 direction = cible.transform.position - transform.position;
-        Rotation(direction);
-        // Verif si la tourelle est bien orientee vers la cible
-        //float angle = Vector3.Angle(direction, partiePivotante.forward);
         if(separTir <= 0f)
         {
           Tir();
@@ -57,20 +52,13 @@ public class TourelleLanceMissile : TourellePivotante
         }
     }
 
-    protected override void Rotation(Vector3 direction)
-    {
-        //direction vers laquelle regarder
-        Quaternion regard = Quaternion.LookRotation(direction);
-        Vector3 rotation = Quaternion.Lerp(partiePivotante.rotation, regard, vitesseDeRotation * Time.deltaTime).eulerAngles;
-        partiePivotante.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-    }
-
     protected override void Tir()
     {
-        GameObject missileObj = Instantiate(projectile, spawnProjectile.position, spawnProjectile.rotation);
-        ProjectileGuide missile = missileObj.GetComponent<ProjectileGuide>();
-        missile.recherche(cible); 
-
-
+        GameObject mortierObj = Instantiate(projectile, spawnProjectile.position, spawnProjectile.rotation);
+        ProjectileMortier mortier = mortierObj.GetComponent<ProjectileMortier>();
+        //tire vers le sol la ou etait l'ennemi
+        Vector3 coordonnees = cible.transform.position;
+        coordonnees.Set(coordonnees.x, 0.0f, coordonnees.z);
+        mortier.recherche(coordonnees);
     }
 }

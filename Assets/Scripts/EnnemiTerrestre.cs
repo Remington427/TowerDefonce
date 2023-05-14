@@ -10,7 +10,7 @@ public class EnnemiTerrestre : Ennemi
     void Start()
     {
         //les PdV augmente avec la vague
-        pointsDeVie += Mathf.Pow(gestionVagues.Instance.GetIndVague(),1.1f);
+        pointsDeVie += Mathf.Pow(gestionVagues.Instance.GetIndVague(),1.2f);
 
         destination = pointsDePassage.points[0];
         destination.Set(destination.x, transform.localScale.y/2+0.1f, destination.z);
@@ -19,6 +19,10 @@ public class EnnemiTerrestre : Ennemi
     // Update is called once per frame
     void Update()
     {
+        if(DonneesJoueur.Instance.fin == true)
+        {
+            return;
+        }
         Vector3 direction = destination - transform.position;
         transform.position += direction.normalized * vitesse * Time.deltaTime;
         if(Vector3.Distance(transform.position, destination) <= 0.03f * vitesse)

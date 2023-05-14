@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TourelleBasique : Tourelle
+public class TourelleBasique : TourellePivotante
 {
 
     // Start is called before the first frame update
@@ -14,7 +14,7 @@ public class TourelleBasique : Tourelle
     // Update is called once per frame
     void Update()
     {
-        if(cible == null)
+        if(DonneesJoueur.Instance.fin == true || cible == null)
         {
             return;
         }
@@ -98,11 +98,5 @@ public class TourelleBasique : Tourelle
         //also Sine Formula
         float shootAngle = Mathf.Asin(Mathf.Sin(targetMoveAngle) * targetVelocity.magnitude / projectileSpeed);
         return targetPosition + targetVelocity * displacement.magnitude / Mathf.Sin(Mathf.PI - targetMoveAngle - shootAngle) * Mathf.Sin(shootAngle) / targetVelocity.magnitude;
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, portee);
     }
 }

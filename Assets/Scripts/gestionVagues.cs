@@ -14,7 +14,7 @@ public class gestionVagues : MonoBehaviour
     public Transform portail;
     public TextMeshProUGUI uiDecompteVague;
     public TextMeshProUGUI uiAffichIndVague;
-    private float demarrage = 25f;
+    public float demarrage = 25f;
     private float intervalleEnnemis = 1f;
     private bool depart = true;
     private int indVague = 0;
@@ -29,6 +29,12 @@ public class gestionVagues : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(DonneesJoueur.Instance.fin == true)
+        {
+            uiAffichIndVague.text = "Fin ! Vague atteinte : " + indVague;
+            uiDecompteVague.text = "Fin de la partie";
+            return;
+        }
         if(demarrage <= 0f)
         {
             indVague++;
@@ -43,6 +49,12 @@ public class gestionVagues : MonoBehaviour
             demarrage -= Time.deltaTime;
             uiDecompteVague.text = "Temps avant prochaine vague : " + Mathf.Round(demarrage).ToString();
         }
+    }
+
+    public void PasserVague()
+    {
+        DonneesJoueur.Instance.Gain((int)(demarrage) - 15);
+        demarrage = 0f;
     }
 
     public int GetIndVague()

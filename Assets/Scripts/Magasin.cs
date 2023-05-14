@@ -6,6 +6,7 @@ public class Magasin : MonoBehaviour
 {
     public GameObject tourelleBasique;
     public GameObject tourelleLanceMissile;
+    public GameObject tourelleMortier;
 
     public static Magasin Instance;
     private Construction construction;
@@ -30,5 +31,19 @@ public class Magasin : MonoBehaviour
         construction.setTourelleAConstruire(tourelleLanceMissile);
         //on met a jour la description de la tourelle choisie
         DonneesJoueur.Instance.MiseAJourDescription(2);
+    }
+
+    public void AchatMortier()
+    {
+        //construction;
+        construction.setTourelleAConstruire(tourelleMortier);
+        //on met a jour la description de la tourelle choisie
+        DonneesJoueur.Instance.MiseAJourDescription(3);
+    }
+
+    public void PasserVague()
+    {
+        DonneesJoueur.Instance.MiseAJourDescription(0);
+        gestionVagues.Instance.PasserVague();
     }
 }

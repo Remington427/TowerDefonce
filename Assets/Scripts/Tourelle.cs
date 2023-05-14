@@ -12,9 +12,6 @@ public abstract class Tourelle : MonoBehaviour
 
     public string ennemiTag;
 
-    public Transform partiePivotante;
-    public float vitesseDeRotation;
-
     public float cadenceDeTir;
     protected float separTir;
 
@@ -23,7 +20,11 @@ public abstract class Tourelle : MonoBehaviour
 
     abstract protected void UpdateCible();
 
-    abstract protected void Rotation(Vector3 direction);
-
     abstract protected void Tir();
+
+    protected void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, portee);
+    }
 }

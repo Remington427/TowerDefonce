@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private Vector3 direction;
+    public Vector3 direction;
 
     public float vitesse;
 
@@ -23,6 +23,10 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(DonneesJoueur.Instance.fin == true)
+        {
+            return;
+        }
 
         //direction = (direction - transform.position).normalized;
         float distance = vitesse * Time.deltaTime;

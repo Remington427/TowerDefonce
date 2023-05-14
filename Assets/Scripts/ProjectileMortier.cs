@@ -2,20 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileGuide : Projectile
+public class ProjectileMortier : Projectile
 {
-    private GameObject cible;
-
     public GameObject particuleExplosion;
 
     public float rayonExplosion = 5f;
-
-    public void recherche(GameObject _cible)
-    {
-        cible = _cible;
-    }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if(DonneesJoueur.Instance.fin == true)
@@ -23,23 +15,19 @@ public class ProjectileGuide : Projectile
             return;
         }
         
-        if(cible == null)
-        {
-            Explosion();
-            return;
-        }
-        Vector3 direction = cible.transform.position - transform.position;
+        transform.LookAt(direction);
+        Vector3 _direction = direction - transform.position;
         float distance = vitesse * Time.deltaTime;
-        if((cible.transform.position - transform.position).magnitude <= distance)
-        {
-            //
-            Explosion();
-            return;
-        }    
-        transform.Translate(direction.normalized * distance, Space.World);
-        transform.LookAt(cible.transform);
 
-        
+        if (_direction.magnitude <= distance)
+        {
+            transform.position = direction;
+            Explosion();
+        }
+        else
+        {
+            transform.Translate(_direction.normalized * distance, Space.World);
+        }
     }
 
     void Explosion()
@@ -47,9 +35,9 @@ public class ProjectileGuide : Projectile
         Collider[] colliders = Physics.OverlapSphere(transform.position, rayonExplosion);
         foreach (Collider collider in colliders)
         {
-            if(collider.gameObject.tag == "EnnemiVolant")
+            if(collider.gameObject.tag == "Ennemi")
             {
-                EnnemiVolant ennemi = collider.gameObject.GetComponent<EnnemiVolant>();
+                EnnemiTerrestre ennemi = collider.gameObject.GetComponent<EnnemiTerrestre>();
 
                 // calcul de la distance entre le projectile et l'ennemi
                 float distance = Vector3.Distance(transform.position, ennemi.transform.position);
@@ -63,13 +51,6 @@ public class ProjectileGuide : Projectile
                 // appliquer les degats a l'ennemi
                 ennemi.Touche(degatsProportionnels);
             }
-            /*
-            else if(collider.gameObject.tag == "Terrestre")
-            {
-                EnnemiTerrestre ennemi = collider.gameObject.GetComponent<EnnemiTerrestre>();
-                ennemi.Touche(degats);
-            }
-            */
 
         }
         GameObject particules = Instantiate(particuleExplosion, transform.position, transform.rotation);
