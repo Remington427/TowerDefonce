@@ -11,7 +11,7 @@ public class EnnemiVolant : Ennemi
     void Start()
     {
         //les PdV augmente avec la vague
-        pointsDeVie += Mathf.Pow(gestionVagues.Instance.GetIndVague(),1.2f);
+        pointsDeVie += Mathf.Pow(gestionVagues.Instance.GetIndVague(),1.5f);
 
         decolle = false;
         arrive = false;

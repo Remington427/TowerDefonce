@@ -18,6 +18,10 @@ public class TourelleBasique : TourellePivotante
         {
             return;
         }
+        if(Vector3.Distance(cible.transform.position, transform.position)>portee)
+        {
+            UpdateCible();
+        }
         
         Vector3 direction = cible.transform.position - transform.position;
         Rotation(direction);
@@ -33,6 +37,10 @@ public class TourelleBasique : TourellePivotante
 
     protected override void UpdateCible()
     {
+        if(cible != null)
+        {
+            return;
+        }
         GameObject[] ennemis = GameObject.FindGameObjectsWithTag(ennemiTag);
         float distanceMin = Mathf.Infinity;
         GameObject ennemiLePlusProche = null;

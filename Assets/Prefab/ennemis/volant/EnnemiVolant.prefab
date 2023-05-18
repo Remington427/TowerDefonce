@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   degats: 1
   vitesse: 4
-  pointsDeVie: 10
+  pointsDeVie: 2
   recompense: 2
   destination: {x: 0, y: 0, z: 0}
   particuleImpact: {fileID: 5436517231079818793, guid: 2a553521dcc822f4582b1ce8ae72a803, type: 3}

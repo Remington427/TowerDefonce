@@ -10,7 +10,7 @@ public class EnnemiTerrestre : Ennemi
     void Start()
     {
         //les PdV augmente avec la vague
-        pointsDeVie += Mathf.Pow(gestionVagues.Instance.GetIndVague(),1.2f);
+        pointsDeVie += Mathf.Pow(gestionVagues.Instance.GetIndVague(),2f);
 
         destination = pointsDePassage.points[0];
         destination.Set(destination.x, transform.localScale.y/2+0.1f, destination.z);
