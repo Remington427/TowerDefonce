@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//classe abstraite
 public abstract class Ennemi : MonoBehaviour
 {
     public int degats;
@@ -12,6 +13,7 @@ public abstract class Ennemi : MonoBehaviour
 
     public GameObject particuleImpact;
 
+    //on soustrait aux PdV les degats d'un projectile
     public void Touche(float degats)
     {
         GameObject particules = Instantiate(particuleImpact, transform.position, transform.rotation);
@@ -24,12 +26,14 @@ public abstract class Ennemi : MonoBehaviour
         }
     }
 
+    //l'ennemi est arrive a la base
     public void ObjectifAtteint()
     {
         DonneesJoueur.Instance.InfligeDegat(degats);
         Destroy(gameObject);
     }
 
+    //getter
     public Vector3 GetVelocite()
     {
         Vector3 direction = destination - transform.position;

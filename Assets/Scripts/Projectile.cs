@@ -12,9 +12,11 @@ public class Projectile : MonoBehaviour
 
     void Start()
     {
+        //on detruit le projectile apres 5s
         InvokeRepeating("FinDeVie", 5f, 5f);
     }
 
+    //initialisation de la direction cible par tourelle
     public void recherche(Vector3 _direction)
     {
         direction = _direction;
@@ -36,6 +38,7 @@ public class Projectile : MonoBehaviour
         
     }
 
+    //verifie si le projectile touche
     void Collisions(Vector3 direction, float distance)
     {
         RaycastHit[] hits = Physics.SphereCastAll(transform.position, 0.1f, direction, distance);

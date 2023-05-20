@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Magasin : MonoBehaviour
 {
+    //tourelle a construire
     public GameObject tourelleBasique;
     public GameObject tourelleLanceMissile;
     public GameObject tourelleMortier;
 
+    //classe singleton
     public static Magasin Instance;
+
+    //contruction associe
     private Construction construction;
 
     void Start()

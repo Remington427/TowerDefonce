@@ -10,6 +10,7 @@ public class ProjectileMortier : Projectile
     
     void Update()
     {
+        //si fin, jeu "en pause"
         if(DonneesJoueur.Instance.fin == true)
         {
             return;
@@ -18,18 +19,20 @@ public class ProjectileMortier : Projectile
         transform.LookAt(direction);
         Vector3 _direction = direction - transform.position;
         float distance = vitesse * Time.deltaTime;
-
+        //cible atteinte
         if (_direction.magnitude <= distance)
         {
+            //explosion sur la cible
             transform.position = direction;
             Explosion();
         }
         else
         {
+            //deplacement
             transform.Translate(_direction.normalized * distance, Space.World);
         }
     }
-
+    /*
     void ParabolicMovement()
     {
         // On calcule la hauteur maximale atteinte par le projectile
@@ -55,6 +58,7 @@ public class ProjectileMortier : Projectile
         // On fait tourner le projectile pour qu'il regarde vers la cible
         transform.rotation = Quaternion.LookRotation(velocity);
     }
+    */
 
     void Explosion()
     {
@@ -79,7 +83,9 @@ public class ProjectileMortier : Projectile
             }
 
         }
+        //effet d'explosion
         GameObject particules = Instantiate(particuleExplosion, transform.position, transform.rotation);
+        //destruction de l'effet apres 2s
         Destroy(particules, 2f);
         Destroy(gameObject);
     }

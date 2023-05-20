@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnnemiTerrestre : Ennemi
 {
+    //indice du prochain point de passage a atteindre
     private int indicePointsDePassage;
     
     // Start is called before the first frame update
@@ -19,14 +20,18 @@ public class EnnemiTerrestre : Ennemi
     // Update is called once per frame
     void Update()
     {
+        //si partie terminee, jeu "en pause"
         if(DonneesJoueur.Instance.fin == true)
         {
             return;
         }
+        //calcul de la direction
         Vector3 direction = destination - transform.position;
         transform.position += direction.normalized * vitesse * Time.deltaTime;
+        //si le prochain point de passage est atteint
         if(Vector3.Distance(transform.position, destination) <= 0.03f * vitesse)
         {
+            //si le bout du parcourt est atteint
             if(indicePointsDePassage >= pointsDePassage.points.Length - 1){
                 ObjectifAtteint();
             }

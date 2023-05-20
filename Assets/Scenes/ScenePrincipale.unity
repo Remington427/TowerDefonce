@@ -7108,7 +7108,7 @@ MonoBehaviour:
   portail: {fileID: 503129221}
   uiDecompteVague: {fileID: 1560885890}
   uiAffichIndVague: {fileID: 1806016933}
-  demarrage: 25
+  demarrage: 5
 --- !u!4 &1608693403
 Transform:
   m_ObjectHideFlags: 0

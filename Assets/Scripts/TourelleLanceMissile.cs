@@ -14,6 +14,7 @@ public class TourelleLanceMissile : TourellePivotante
     // Update is called once per frame
     void Update()
     {
+        //si fin, jeu "en pause"
         if(DonneesJoueur.Instance.fin == true || cible == null)
         {
             return;

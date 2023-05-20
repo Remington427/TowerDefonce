@@ -8,22 +8,26 @@ public class TourelleBasique : TourellePivotante
     // Start is called before the first frame update
     void Start()
     {
+        //on met a jour la cible toutes les 3s
         InvokeRepeating("UpdateCible", 3f, 1f);
     }
 
     // Update is called once per frame
     void Update()
     {
+        //si fin, jeu "en pause"
         if(DonneesJoueur.Instance.fin == true || cible == null)
         {
             return;
         }
+        //si la cible s'eloigne, changer de cible
         if(Vector3.Distance(cible.transform.position, transform.position)>portee)
         {
             UpdateCible();
         }
-        
+        //calcul direction
         Vector3 direction = cible.transform.position - transform.position;
+        //rotation vers direction
         Rotation(direction);
         // Verif si la tourelle est bien orientee vers la cible
         float angle = Vector3.Angle(direction, partiePivotante.forward);
@@ -89,11 +93,12 @@ public class TourelleBasique : TourellePivotante
         //return (cible.transform.position - depart).normalized;
         //variante
         EnnemiTerrestre ennemi = cible.GetComponent<EnnemiTerrestre>();
-        return (predictedPosition(cible.transform.position, spawnProjectile.position, ennemi.GetVelocite(), 10f) - depart).normalized;
+        return (calculPosition(cible.transform.position, spawnProjectile.position, ennemi.GetVelocite(), 10f) - depart).normalized;
 
     }
 
-    private Vector3 predictedPosition(Vector3 targetPosition, Vector3 shooterPosition, Vector3 targetVelocity, float projectileSpeed)
+    //prediction de la position de la cible
+    private Vector3 calculPosition(Vector3 targetPosition, Vector3 shooterPosition, Vector3 targetVelocity, float projectileSpeed)
     {
         Vector3 displacement = targetPosition - shooterPosition;
         float targetMoveAngle = Vector3.Angle(-displacement, targetVelocity) * Mathf.Deg2Rad;

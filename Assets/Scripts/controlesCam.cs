@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class controlesCam : MonoBehaviour
 {
+    //vitesse de deplacement lateral
     public float vitesseMouvement = 10f;
+    //vitesse de deplacement du zoom
     public float vitesseZoom = 15f;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()

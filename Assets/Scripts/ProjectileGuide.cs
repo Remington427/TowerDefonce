@@ -18,21 +18,24 @@ public class ProjectileGuide : Projectile
     // Update is called once per frame
     void Update()
     {
+        //si fin de partie, jeu "en pause"
         if(DonneesJoueur.Instance.fin == true)
         {
             return;
         }
-        
+        //si cible detruite, auto-destruction
         if(cible == null)
         {
             Explosion();
             return;
         }
+        //mise a jour direction
         Vector3 direction = cible.transform.position - transform.position;
         float distance = vitesse * Time.deltaTime;
+        //si cible atteinte
         if((cible.transform.position - transform.position).magnitude <= distance)
         {
-            //
+            //explosion du missile
             Explosion();
             return;
         }    
@@ -42,6 +45,7 @@ public class ProjectileGuide : Projectile
         
     }
 
+    //explosion du missile
     void Explosion()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, rayonExplosion);
@@ -72,7 +76,9 @@ public class ProjectileGuide : Projectile
             */
 
         }
+        //on enclenche l'effet de l'explosio
         GameObject particules = Instantiate(particuleExplosion, transform.position, transform.rotation);
+        //on oublie pas de le detruire les particules apres l'effet
         Destroy(particules, 2f);
         Destroy(gameObject);
     }
